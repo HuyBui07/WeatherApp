@@ -34,7 +34,7 @@ class Responsive {
 
   static double sizeScaleFactor(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    double val = (width / 1080) * 1.5;
-    return max(1, min(val, 1.5));
+    double val = (width / 1080) * 0.8;
+    return max(min(val, 1), 0.8);
   }
 }

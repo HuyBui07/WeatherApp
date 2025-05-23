@@ -46,7 +46,7 @@ class TodayWeather extends StatelessWidget {
           '$cityName ($date)',
           style: TextStyle(
             color: Colors.white,
-            fontSize: 24 / scaleFactor,
+            fontSize: 32 / scaleFactor,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -61,7 +61,7 @@ class TodayWeather extends StatelessWidget {
                   'Temperature: ${temperature.toString()}°C',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18 / scaleFactor,
+                    fontSize: 24 / scaleFactor,
                   ),
                 ),
                 SizedBox(height: 8 / scaleFactor),
@@ -69,7 +69,7 @@ class TodayWeather extends StatelessWidget {
                   'Wind: ${windSpeed.toString()} M/S',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18 / scaleFactor,
+                    fontSize: 24 / scaleFactor,
                   ),
                 ),
                 SizedBox(height: 8 / scaleFactor),
@@ -77,7 +77,7 @@ class TodayWeather extends StatelessWidget {
                   'Humidity: ${humidity.toString()}%',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18 / scaleFactor,
+                    fontSize: 24 / scaleFactor,
                   ),
                 ),
               ],
@@ -90,7 +90,7 @@ class TodayWeather extends StatelessWidget {
                   condition,
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18 / scaleFactor,
+                    fontSize: 24 / scaleFactor,
                   ),
                 ),
               ],
@@ -114,7 +114,7 @@ class TodayWeather extends StatelessWidget {
                 '$cityName ($date)',
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 24.0,
+                  fontSize: 32.0,
                   fontWeight: FontWeight.bold,
                 ),
                 textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
@@ -124,7 +124,7 @@ class TodayWeather extends StatelessWidget {
                 'Temperature: ${temperature.toString()}°C',
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 18.0,
+                  fontSize: 24.0,
                 ),
                 textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
               ),
@@ -133,7 +133,7 @@ class TodayWeather extends StatelessWidget {
                 'Wind: ${windSpeed.toString()} M/S',
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 18.0,
+                  fontSize: 24.0,
                 ),
                 textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
               ),
@@ -142,7 +142,7 @@ class TodayWeather extends StatelessWidget {
                 'Humidity: ${humidity.toString()}%',
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 18.0,
+                  fontSize: 24.0,
                 ),
                 textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
               ),
@@ -157,7 +157,7 @@ class TodayWeather extends StatelessWidget {
               condition,
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 18.0,
+                fontSize: 24.0,
               ),
               textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
             ),

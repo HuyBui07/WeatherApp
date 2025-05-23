@@ -208,14 +208,16 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
         }
 
         final weather = _forecastWeather![index];
-        return FutureWeather(
-          cityName: weather.cityName,
-          date: weather.lastUpdated,
-          temperature: weather.temperature,
-          windSpeed: weather.windSpeed,
-          humidity: weather.humidity.toDouble(),
-          condition: weather.condition,
-          icon: weather.icon,
+        return FittedBox(
+          child: FutureWeather(
+            cityName: weather.cityName,
+            date: weather.lastUpdated,
+            temperature: weather.temperature,
+            windSpeed: weather.windSpeed,
+            humidity: weather.humidity.toDouble(),
+            condition: weather.condition,
+            icon: weather.icon,
+          ),
         );
       },
     );

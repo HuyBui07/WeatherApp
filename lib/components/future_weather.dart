@@ -42,7 +42,7 @@ class FutureWeather extends StatelessWidget {
             '$cityName ($date)',
             style: TextStyle(
               color: Colors.white,
-              fontSize: Responsive.isMobile(context) ? 14 : 18,
+              fontSize: Responsive.isMobile(context) ? 18 : 22,
               fontWeight: FontWeight.bold,
             ),
             textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
@@ -54,7 +54,7 @@ class FutureWeather extends StatelessWidget {
             condition,
             style: TextStyle(
               color: Colors.white,
-              fontSize: Responsive.isMobile(context) ? 12 : 14,
+              fontSize: Responsive.isMobile(context) ? 16 : 18,
             ),
             textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
           ),
@@ -63,7 +63,7 @@ class FutureWeather extends StatelessWidget {
             'Temperature: ${temperature.toString()}°C',
             style: TextStyle(
               color: Colors.white,
-              fontSize: Responsive.isMobile(context) ? 12 : 14,
+              fontSize: Responsive.isMobile(context) ? 16 : 18,
             ),
             textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
           ),
@@ -72,7 +72,7 @@ class FutureWeather extends StatelessWidget {
             'Wind: ${windSpeed.toString()} M/S',
             style: TextStyle(
               color: Colors.white,
-              fontSize: Responsive.isMobile(context) ? 12 : 14,
+              fontSize: Responsive.isMobile(context) ? 16 : 18,
             ),
             textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
           ),
@@ -81,7 +81,7 @@ class FutureWeather extends StatelessWidget {
             'Humidity: ${humidity.toString()}%',
             style: TextStyle(
               color: Colors.white,
-              fontSize: Responsive.isMobile(context) ? 12 : 14,
+              fontSize: Responsive.isMobile(context) ? 16 : 18,
             ),
             textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
           ),
