@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
-import '../utils/responsive.dart';
+import '../utils/text_scale.dart';
 
 class TodayWeather extends StatelessWidget {
   final String cityName;
@@ -24,147 +24,77 @@ class TodayWeather extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scaleFactor = MediaQuery.of(context).devicePixelRatio;
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(Responsive.getPadding(context) / scaleFactor),
+      padding: EdgeInsets.all(32 * ScaleSize.sizeScaleFactor(context)),
       decoration: BoxDecoration(
         color: AppColors.primary,
-        borderRadius: BorderRadius.circular(10 / scaleFactor),
+        borderRadius: BorderRadius.circular(10),
       ),
-      child: Responsive.isMobile(context)
-          ? _buildMobileLayout(scaleFactor)
-          : _buildDesktopLayout(context),
-    );
-  }
-
-  Widget _buildMobileLayout(double scaleFactor) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          '$cityName ($date)',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 32 / scaleFactor,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        SizedBox(height: 16 / scaleFactor),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Temperature: ${temperature.toString()}°C',
-                  style: TextStyle(
+                  '$cityName ($date)',
+                  style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 24 / scaleFactor,
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
                   ),
+                  textScaler: TextScaler.linear(ScaleSize.sizeScaleFactor(context)),
                 ),
-                SizedBox(height: 8 / scaleFactor),
+                SizedBox(height: 16 * ScaleSize.sizeScaleFactor(context)),
+                Text(
+                  'Temperature: ${temperature.toString()}°C',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                  textScaler: TextScaler.linear(ScaleSize.sizeScaleFactor(context)),
+                ),
+                SizedBox(height: 12 * ScaleSize.sizeScaleFactor(context)),
                 Text(
                   'Wind: ${windSpeed.toString()} M/S',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 24 / scaleFactor,
+                    fontSize: 24,
                   ),
+                  textScaler: TextScaler.linear(ScaleSize.sizeScaleFactor(context)),
                 ),
-                SizedBox(height: 8 / scaleFactor),
+                SizedBox(height: 12 * ScaleSize.sizeScaleFactor(context)),
                 Text(
                   'Humidity: ${humidity.toString()}%',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 24 / scaleFactor,
+                    fontSize: 24,
                   ),
+                  textScaler: TextScaler.linear(ScaleSize.sizeScaleFactor(context)),
                 ),
               ],
             ),
-            Column(
-              children: [
-                Image.network(icon, scale: scaleFactor),
-                SizedBox(height: 8 / scaleFactor),
-                Text(
-                  condition,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24 / scaleFactor,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildDesktopLayout(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          ),
+          Column(
             children: [
+              Image.network(icon),
+              SizedBox(height: 8 * ScaleSize.sizeScaleFactor(context)),
               Text(
-                '$cityName ($date)',
+                condition,
                 style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 32.0,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
                 ),
-                textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                'Temperature: ${temperature.toString()}°C',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 24.0,
-                ),
-                textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'Wind: ${windSpeed.toString()} M/S',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 24.0,
-                ),
-                textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'Humidity: ${humidity.toString()}%',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 24.0,
-                ),
-                textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
+                    textScaler: TextScaler.linear(ScaleSize.sizeScaleFactor(context)),
               ),
             ],
           ),
-        ),
-        Column(
-          children: [
-            Image.network(icon),
-            const SizedBox(height: 8),
-            Text(
-              condition,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 24.0,
-              ),
-              textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
-            ),
-          ],
-        ),
-        const SizedBox(width: 40),
-      ],
+          SizedBox(width: 40 * ScaleSize.sizeScaleFactor(context)),
+        ],
+      ),
     );
   }
 }

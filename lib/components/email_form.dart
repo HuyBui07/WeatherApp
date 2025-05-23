@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/theme/app_colors.dart';
 import 'package:weather_app/services/subscription_service.dart';
-import 'package:weather_app/utils/responsive.dart';
 
 class EmailForm extends StatelessWidget {
   const EmailForm({super.key});
@@ -44,23 +43,21 @@ class EmailForm extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Container(
-        padding: EdgeInsets.all(Responsive.getPadding(context)),
-        width: Responsive.isMobile(context)
-            ? MediaQuery.of(context).size.width * 0.9
-            : MediaQuery.of(context).size.width * 0.3,
+        padding: const EdgeInsets.all(16),
+        width: 400,
         child: Form(
           key: formKey,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
+              const Text(
                 'Subscribe to Weather Updates',
                 style: TextStyle(
-                  fontSize: Responsive.isMobile(context) ? 18 : 20,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: Responsive.getPadding(context)),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: emailController,
                 decoration: const InputDecoration(
@@ -69,48 +66,42 @@ class EmailForm extends StatelessWidget {
                 ),
                 validator: validateEmail,
               ),
-              SizedBox(height: Responsive.getPadding(context)),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
-                      minimumSize: Size(
-                        Responsive.isMobile(context) ? 80 : 100,
-                        Responsive.isMobile(context) ? 40 : 60,
-                      ),
+                      minimumSize: const Size(100, 40),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),
                     onPressed: onCancel,
-                    child: Text(
+                    child: const Text(
                       'Cancel',
                       style: TextStyle(
                         color: AppColors.primary,
-                        fontSize: Responsive.isMobile(context) ? 14 : 16,
+                        fontSize: 16,
                       ),
                     ),
                   ),
-                  SizedBox(width: Responsive.getPadding(context) / 2),
+                  const SizedBox(width: 8),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary,
-                      minimumSize: Size(
-                        Responsive.isMobile(context) ? 80 : 100,
-                        Responsive.isMobile(context) ? 40 : 60,
-                      ),
+                      minimumSize: const Size(100, 40),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4),
                       ),
                     ),
                     onPressed: onSubmit,
-                    child: Text(
+                    child: const Text(
                       'Subscribe',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: Responsive.isMobile(context) ? 14 : 16,
+                        fontSize: 16,
                       ),
                     ),
                   ),

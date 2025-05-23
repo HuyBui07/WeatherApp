@@ -25,8 +25,8 @@ import 'theme/app_colors.dart';
 import 'theme/app_theme.dart';
 
 // Utils
+import 'utils/text_scale.dart';
 import 'utils/validate_city.dart';
-import 'utils/responsive.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -242,8 +242,8 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
               ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.all(Responsive.getPadding(context)),
-                child: Responsive.isMobile(context)
+                padding: const EdgeInsets.all(32),
+                child: MediaQuery.of(context).size.width < 600
                     ? _buildMobileLayout()
                     : _buildDesktopLayout(),
               ),
@@ -332,7 +332,7 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              width: Responsive.getWidth(context),
+              width: MediaQuery.of(context).size.width * 0.25,
               child: SearchForm(
                 cityController: _cityController,
                 formKey: _formKey,
@@ -343,7 +343,7 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
             ),
             const Spacer(),
             SizedBox(
-              width: Responsive.getWidth(context),
+              width: MediaQuery.of(context).size.width * 0.25,
               child: Center(
                 child: InkWell(
                   onTap: () {
@@ -367,7 +367,7 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
             ),
           ],
         ),
-        SizedBox(width: Responsive.getPadding(context)),
+        const SizedBox(width: 32),
         if (_todayWeather != null)
           Expanded(
             child: Column(
@@ -382,15 +382,17 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
                   condition: _todayWeather!.condition,
                   icon: _todayWeather!.icon,
                 ),
-                const SizedBox(height: 40),
-                const Text(
+                SizedBox(height: 40 * ScaleSize.sizeScaleFactor(context)),
+                Text(
                   'Forecast',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
                   ),
+                  textScaler:
+                      TextScaler.linear(ScaleSize.sizeScaleFactor(context)),
                 ),
-                const SizedBox(height: 28),
+                SizedBox(height: 28 * ScaleSize.sizeScaleFactor(context)),
                 Expanded(
                   child: _buildForecastList(),
                 ),

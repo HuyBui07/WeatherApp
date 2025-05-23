@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
-import '../utils/responsive.dart';
+import '../utils/text_scale.dart';
 
 class FutureWeather extends StatelessWidget {
   final String cityName;
@@ -25,12 +25,9 @@ class FutureWeather extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Responsive.isMobile(context) ? 280 : 300,
-      padding: EdgeInsets.all(Responsive.getPadding(context)),
-      margin: EdgeInsets.only(
-        right: Responsive.getPadding(context),
-        bottom: Responsive.isMobile(context) ? 8 : 0,
-      ),
+      width: 300 * ScaleSize.sizeScaleFactor(context),
+      padding: const EdgeInsets.all(16),
+      margin: const EdgeInsets.only(right: 16, bottom: 16),
       decoration: BoxDecoration(
         color: AppColors.gray,
         borderRadius: BorderRadius.circular(10),
@@ -40,50 +37,55 @@ class FutureWeather extends StatelessWidget {
         children: [
           Text(
             '$cityName ($date)',
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
-              fontSize: Responsive.isMobile(context) ? 18 : 22,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
-            textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
+            textScaler: TextScaler.linear(ScaleSize.sizeScaleFactor(context)),
           ),
-          SizedBox(height: 8 * Responsive.sizeScaleFactor(context)),
-          Image.network(icon),
-          SizedBox(height: 4 * Responsive.sizeScaleFactor(context)),
+          SizedBox(height: 16 * ScaleSize.sizeScaleFactor(context)),
+          Image.network(icon,
+              width: 100 * ScaleSize.sizeScaleFactor(context),
+              height: 100 * ScaleSize.sizeScaleFactor(context)),
+          SizedBox(height: 10 * ScaleSize.sizeScaleFactor(context)),
           Text(
             condition,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
-              fontSize: Responsive.isMobile(context) ? 16 : 18,
+              fontSize: 18,
             ),
-            textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
+            textScaler: TextScaler.linear(ScaleSize.sizeScaleFactor(context)),
+            textAlign: TextAlign.center,
           ),
-          SizedBox(height: 8 * Responsive.sizeScaleFactor(context)),
+          SizedBox(height: 16 * ScaleSize.sizeScaleFactor(context)),
           Text(
             'Temperature: ${temperature.toString()}°C',
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
-              fontSize: Responsive.isMobile(context) ? 16 : 18,
+              fontSize: 18,
             ),
-            textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
+            textScaler: TextScaler.linear(ScaleSize.sizeScaleFactor(context)),
           ),
-          SizedBox(height: 6 * Responsive.sizeScaleFactor(context)),
+          SizedBox(height: 12 * ScaleSize.sizeScaleFactor(context)),
           Text(
             'Wind: ${windSpeed.toString()} M/S',
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
-              fontSize: Responsive.isMobile(context) ? 16 : 18,
+              fontSize: 18,
             ),
-            textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
+            textScaler: TextScaler.linear(ScaleSize.sizeScaleFactor(context)),
+            textAlign: TextAlign.center,
           ),
-          SizedBox(height: 6 * Responsive.sizeScaleFactor(context)),
+          SizedBox(height: 12 * ScaleSize.sizeScaleFactor(context)),
           Text(
             'Humidity: ${humidity.toString()}%',
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
-              fontSize: Responsive.isMobile(context) ? 16 : 18,
+              fontSize: 18,
             ),
-            textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
+            textScaler: TextScaler.linear(ScaleSize.sizeScaleFactor(context)),
+            textAlign: TextAlign.center,
           ),
         ],
       ),
