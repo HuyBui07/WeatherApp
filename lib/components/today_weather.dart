@@ -24,32 +24,33 @@ class TodayWeather extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaleFactor = MediaQuery.of(context).devicePixelRatio;
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(Responsive.getPadding(context)),
+      padding: EdgeInsets.all(Responsive.getPadding(context) * scaleFactor),
       decoration: BoxDecoration(
         color: AppColors.primary,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10 * scaleFactor),
       ),
       child: Responsive.isMobile(context)
-          ? _buildMobileLayout()
-          : _buildDesktopLayout(),
+          ? _buildMobileLayout(scaleFactor)
+          : _buildDesktopLayout(scaleFactor),
     );
   }
 
-  Widget _buildMobileLayout() {
+  Widget _buildMobileLayout(double scaleFactor) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           '$cityName ($date)',
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white,
-            fontSize: 24,
+            fontSize: 24 * scaleFactor,
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16 * scaleFactor),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -58,38 +59,38 @@ class TodayWeather extends StatelessWidget {
               children: [
                 Text(
                   'Temperature: ${temperature.toString()}°C',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18,
+                    fontSize: 18 * scaleFactor,
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8 * scaleFactor),
                 Text(
                   'Wind: ${windSpeed.toString()} M/S',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18,
+                    fontSize: 18 * scaleFactor,
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8 * scaleFactor),
                 Text(
                   'Humidity: ${humidity.toString()}%',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18,
+                    fontSize: 18 * scaleFactor,
                   ),
                 ),
               ],
             ),
             Column(
               children: [
-                Image.network(icon),
-                const SizedBox(height: 8),
+                Image.network(icon, scale: 1/scaleFactor),
+                SizedBox(height: 8 * scaleFactor),
                 Text(
                   condition,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18,
+                    fontSize: 18 * scaleFactor,
                   ),
                 ),
               ],
@@ -100,8 +101,8 @@ class TodayWeather extends StatelessWidget {
     );
   }
 
-  Widget _buildDesktopLayout() {
-    const fontSize = 28.0;
+  Widget _buildDesktopLayout(double scaleFactor) {
+    final fontSize = 28.0 * scaleFactor;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -112,34 +113,34 @@ class TodayWeather extends StatelessWidget {
             children: [
               Text(
                 '$cityName ($date)',
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.white,
                   fontSize: fontSize,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16 * scaleFactor),
               Text(
                 'Temperature: ${temperature.toString()}°C',
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.white,
-                  fontSize: fontSize - 6,
+                  fontSize: fontSize - (6 * scaleFactor),
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12 * scaleFactor),
               Text(
                 'Wind: ${windSpeed.toString()} M/S',
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.white,
-                  fontSize: fontSize - 6,
+                  fontSize: fontSize - (6 * scaleFactor),
                 ),
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12 * scaleFactor),
               Text(
                 'Humidity: ${humidity.toString()}%',
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.white,
-                  fontSize: fontSize - 6,
+                  fontSize: fontSize - (6 * scaleFactor),
                 ),
               ),
             ],
@@ -147,18 +148,18 @@ class TodayWeather extends StatelessWidget {
         ),
         Column(
           children: [
-            Image.network(icon),
-            const SizedBox(height: 8),
+            Image.network(icon, scale: 1/scaleFactor),
+            SizedBox(height: 8 * scaleFactor),
             Text(
               condition,
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.white,
-                fontSize: fontSize - 6,
+                fontSize: fontSize - (6 * scaleFactor),
               ),
             ),
           ],
         ),
-        const SizedBox(width: 40),
+        SizedBox(width: 40 * scaleFactor),
       ],
     );
   }
