@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class ScaleSize {
   static double sizeScaleFactor(BuildContext context) {
+    if (MediaQuery.of(context).size.width < 600) return 0.8;
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
