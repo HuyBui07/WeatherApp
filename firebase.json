@@ -1,0 +1,35 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "weather-app-c6279",
+          "appId": "1:904941840518:android:6a0cb4c7dde257b4208907",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "weather-app-c6279",
+          "configurations": {
+            "android": "1:904941840518:android:6a0cb4c7dde257b4208907",
+            "ios": "1:904941840518:ios:ca382dcb2ee262cf208907",
+            "macos": "1:904941840518:ios:ca382dcb2ee262cf208907",
+            "web": "1:904941840518:web:c245ff215d43e8a7208907",
+            "windows": "1:904941840518:web:824799b34c92eef0208907"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
