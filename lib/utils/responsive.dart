@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class Responsive {
   static bool isMobile(BuildContext context) =>
@@ -29,5 +30,11 @@ class Responsive {
     } else {
       return 16;
     }
+  }
+
+  static double sizeScaleFactor(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    double val = (width / 1400) * 1.5;
+    return max(1, min(val, 1.5));
   }
 }

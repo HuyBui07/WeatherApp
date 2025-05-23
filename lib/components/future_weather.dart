@@ -24,17 +24,16 @@ class FutureWeather extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scaleFactor = MediaQuery.of(context).devicePixelRatio;
     return Container(
-      width: (Responsive.isMobile(context) ? 280 : 300) * scaleFactor,
-      padding: EdgeInsets.all(Responsive.getPadding(context) / scaleFactor),
+      width: Responsive.isMobile(context) ? 280 : 300,
+      padding: EdgeInsets.all(Responsive.getPadding(context)),
       margin: EdgeInsets.only(
-        right: Responsive.getPadding(context) / scaleFactor,
-        bottom: Responsive.isMobile(context) ? 16 / scaleFactor : 0,
+        right: Responsive.getPadding(context),
+        bottom: Responsive.isMobile(context) ? 8 : 0,
       ),
       decoration: BoxDecoration(
         color: AppColors.gray,
-        borderRadius: BorderRadius.circular(10 / scaleFactor),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,43 +42,48 @@ class FutureWeather extends StatelessWidget {
             '$cityName ($date)',
             style: TextStyle(
               color: Colors.white,
-              fontSize: (Responsive.isMobile(context) ? 20 : 26) / scaleFactor,
+              fontSize: Responsive.isMobile(context) ? 14 : 18,
               fontWeight: FontWeight.bold,
             ),
+            textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
           ),
-          SizedBox(height: 16 / scaleFactor),
-          Image.network(icon, scale: 1/scaleFactor),
-          SizedBox(height: 10 / scaleFactor),
+          SizedBox(height: 8 * Responsive.sizeScaleFactor(context)),
+          Image.network(icon),
+          SizedBox(height: 4 * Responsive.sizeScaleFactor(context)),
           Text(
             condition,
             style: TextStyle(
               color: Colors.white,
-              fontSize: (Responsive.isMobile(context) ? 16 : 20) / scaleFactor,
+              fontSize: Responsive.isMobile(context) ? 12 : 14,
             ),
+            textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
           ),
-          SizedBox(height: 16 / scaleFactor),
+          SizedBox(height: 8 * Responsive.sizeScaleFactor(context)),
           Text(
             'Temperature: ${temperature.toString()}°C',
             style: TextStyle(
               color: Colors.white,
-              fontSize: (Responsive.isMobile(context) ? 16 : 20) / scaleFactor,
+              fontSize: Responsive.isMobile(context) ? 12 : 14,
             ),
+            textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
           ),
-          SizedBox(height: 12 / scaleFactor),
+          SizedBox(height: 6 * Responsive.sizeScaleFactor(context)),
           Text(
             'Wind: ${windSpeed.toString()} M/S',
             style: TextStyle(
               color: Colors.white,
-              fontSize: (Responsive.isMobile(context) ? 16 : 20) / scaleFactor,
+              fontSize: Responsive.isMobile(context) ? 12 : 14,
             ),
+            textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
           ),
-          SizedBox(height: 12 / scaleFactor),
+          SizedBox(height: 6 * Responsive.sizeScaleFactor(context)),
           Text(
             'Humidity: ${humidity.toString()}%',
             style: TextStyle(
               color: Colors.white,
-              fontSize: (Responsive.isMobile(context) ? 16 : 20) / scaleFactor,
+              fontSize: Responsive.isMobile(context) ? 12 : 14,
             ),
+            textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
           ),
         ],
       ),

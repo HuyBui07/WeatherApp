@@ -34,7 +34,7 @@ class TodayWeather extends StatelessWidget {
       ),
       child: Responsive.isMobile(context)
           ? _buildMobileLayout(scaleFactor)
-          : _buildDesktopLayout(scaleFactor),
+          : _buildDesktopLayout(context),
     );
   }
 
@@ -101,8 +101,7 @@ class TodayWeather extends StatelessWidget {
     );
   }
 
-  Widget _buildDesktopLayout(double scaleFactor) {
-    final fontSize = 28.0 / scaleFactor;
+  Widget _buildDesktopLayout(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -113,53 +112,58 @@ class TodayWeather extends StatelessWidget {
             children: [
               Text(
                 '$cityName ($date)',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
-                  fontSize: fontSize,
+                  fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                 ),
+                textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
               ),
-              SizedBox(height: 16 / scaleFactor),
+              const SizedBox(height: 16),
               Text(
                 'Temperature: ${temperature.toString()}°C',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
-                  fontSize: fontSize - (6 / scaleFactor),
+                  fontSize: 18.0,
                 ),
+                textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
               ),
-              SizedBox(height: 12 / scaleFactor),
+              const SizedBox(height: 12),
               Text(
                 'Wind: ${windSpeed.toString()} M/S',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
-                  fontSize: fontSize - (6 / scaleFactor),
+                  fontSize: 18.0,
                 ),
+                textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
               ),
-              SizedBox(height: 12 / scaleFactor),
+              const SizedBox(height: 12),
               Text(
                 'Humidity: ${humidity.toString()}%',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
-                  fontSize: fontSize - (6 / scaleFactor),
+                  fontSize: 18.0,
                 ),
+                textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
               ),
             ],
           ),
         ),
         Column(
           children: [
-            Image.network(icon, scale: scaleFactor),
-            SizedBox(height: 8 / scaleFactor),
+            Image.network(icon),
+            const SizedBox(height: 8),
             Text(
               condition,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
-                fontSize: fontSize - (6 / scaleFactor),
+                fontSize: 18.0,
               ),
+              textScaler: TextScaler.linear(Responsive.sizeScaleFactor(context)),
             ),
           ],
         ),
-        SizedBox(width: 40 / scaleFactor),
+        const SizedBox(width: 40),
       ],
     );
   }
